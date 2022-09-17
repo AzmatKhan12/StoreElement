@@ -43,4 +43,18 @@ function onSubmit(e) {
     localStorage.setItem('name', name);
     localStorage.setItem('email', email);
 
+    // store object in local Storage.
+
+    let userDetails = {
+
+        name: name,
+        email: email
+    };
+    localStorage.setItem('Details', JSON.stringify(userDetails));
+
+    //Retrieve an item from the local Storage
+    let user = JSON.parse(localStorage.getItem('Details'));
+
+    console.log(user);
+
 }
