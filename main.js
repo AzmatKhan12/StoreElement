@@ -40,8 +40,8 @@ function onSubmit(e) {
     e.preventDefault();
     const name = nameInput.value;
     const email = emailInput.value;
-    localStorage.setItem('name', name);
-    localStorage.setItem('email', email);
+    // localStorage.setItem('name', name);
+    // localStorage.setItem('email', email);
 
     // store object in local Storage.
 
@@ -50,7 +50,7 @@ function onSubmit(e) {
         name: name,
         email: email
     };
-    localStorage.setItem('Details', JSON.stringify(userDetails));
+    localStorage.setItem(userDetails.email, JSON.stringify(userDetails));// to make key value unique, we make email id as a unique key.
 
     //Retrieve an item from the local Storage
     let user = JSON.parse(localStorage.getItem('Details'));
