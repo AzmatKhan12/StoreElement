@@ -87,16 +87,45 @@ function showOnScreen(user) {
     document.getElementById('email').value = '';
     document.getElementById('name').value = '';
 
-
-    // if (localStorage.getItem(user.email) !== null) {
-    //     remove(user.email)
-    // }
-
     const parentNode = userList;
-    const childHTML = `<li>${user.name} : ${user.email}</li>`;
+    const childHTML = `<li>${user.name} : ${user.email}
+    <button onclick=deleteUser('${user.email}')> Delete  </button>
+    <button onclick=editUserDetails('${user.email}','${user.name}')>Edit </button>
+    </li>`;
+
     parentNode.innerHTML = parentNode.innerHTML + childHTML;
 
+    if (localStorage.getItem(user.email) !== null) {
+        remove(user.email)
+    }
+
+
+}
+
+// if email already exist the remove frome the screen
+function remove(emailId) {
+    const parentNode = document.getElementById('Users');
+    const childNodeToBeDeleted = document.getElementById(emailId);
+    if (childNodeToBeDeleted) {
+        parentNode.removeChild(childNodeToBeDeleted)
+    }
 
 
 
+}
+
+//Edit User
+function editUserDetails(emailId, Username) {
+
+    document.getElementById('email').value = emailId;
+    document.getElementById('name').value = Username;
+
+    deleteUser(emailId);
+}
+
+// deleteUser('abc@gmail.com')
+function deleteUser(emailId) {
+    console.log(emailId)
+    localStorage.removeItem(emailId);
+    remove(emailId);
 }
