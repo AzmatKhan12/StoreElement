@@ -40,7 +40,7 @@ function onSubmit(e) {
     e.preventDefault();
     const name = nameInput.value;
     const email = emailInput.value;
-    localStorage.setItem = ('name', name);
-    localStorage.setItem = ('email', email);
+    localStorage.setItem('name', name);
+    localStorage.setItem('email', email);
 
 }
