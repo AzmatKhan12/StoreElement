@@ -52,13 +52,21 @@ function onSubmit(e) {
         name: name,
         email: email
     };
-    localStorage.setItem(userDetails.email, JSON.stringify(userDetails));// to make key value unique, we make email id as a unique key.
 
-    //Retrieve an item from the local Storage
-    let user = JSON.parse(localStorage.getItem('Details'));
+    axios.post('https://crudcrud.com/api/bbe7eb57fd714312b1c297a7c7990e63/appointmentData', userDetails)
+        .then((response) => {
+            showOnScreen(response.data);
+        })
+        .catch((err) => {
+            console.error(err);
+        })
+    // localStorage.setItem(userDetails.email, JSON.stringify(userDetails));// to make key value unique, we make email id as a unique key.
 
-    console.log(user);
-    showOnScreen(userDetails);
+    // //Retrieve an item from the local Storage
+    // let user = JSON.parse(localStorage.getItem('Details'));
+
+    // console.log(user);
+    // showOnScreen(userDetails);
 
 }
 
@@ -84,9 +92,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
 function showOnScreen(user) {
 
-    document.getElementById('email').value = '';
-    document.getElementById('name').value = '';
-
     const parentNode = userList;
     const childHTML = `<li>${user.name} : ${user.email}
     <button onclick=deleteUser('${user.email}')> Delete  </button>
@@ -98,6 +103,8 @@ function showOnScreen(user) {
     if (localStorage.getItem(user.email) !== null) {
         remove(user.email)
     }
+    document.getElementById('email').value = '';
+    document.getElementById('name').value = '';
 
 
 }
@@ -109,7 +116,6 @@ function remove(emailId) {
     if (childNodeToBeDeleted) {
         parentNode.removeChild(childNodeToBeDeleted)
     }
-
 
 
 }
