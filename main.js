@@ -79,15 +79,28 @@ function onSubmit(e) {
 
 
 window.addEventListener("DOMContentLoaded", () => {
-    const localStorageObj = localStorage;
-    const localstoragekeys = Object.keys(localStorageObj)
 
-    for (var i = 0; i < localstoragekeys.length; i++) {
-        const key = localstoragekeys[i]
-        const userDetailsString = localStorageObj[key];
-        const userDetailsObj = JSON.parse(userDetailsString);
-        showOnScreen(userDetailsObj)
-    }
+
+
+    axios.get('https://crudcrud.com/api/bbe7eb57fd714312b1c297a7c7990e63/appointmentData')
+        .then((response) => {
+            console.log(response)
+            for (let i = 0; i < response.data.length; i++) {
+                showOnScreen(response.data[i])
+
+            }
+        })
+        .catch((error) => {
+            console.error(error)
+        })
+    // const localStorageObj = localStorage;
+    // const localstoragekeys = Object.keys(localStorageObj)
+    // for (var i = 0; i < localstoragekeys.length; i++) {
+    //     const key = localstoragekeys[i]
+    //     const userDetailsString = localStorageObj[key];
+    //     const userDetailsObj = JSON.parse(userDetailsString);
+    //     showOnScreen(userDetailsObj)
+    // }
 })
 
 function showOnScreen(user) {
